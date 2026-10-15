@@ -1,0 +1,51 @@
+/* TARTARIA XP — luxury.css: compass glow · astrolabe mechanics + stars · real-time sun */
+
+/* ---- compass: JS drives the rotation, CSS only handles the glow ---- */
+#compass-needle.is-driven { transition: filter var(--txp-time-slow) var(--txp-ease-luxury); }
+.luxury-button.is-east #compass-needle { filter: drop-shadow(0 0 10px rgba(212, 175, 55, .6)); }
+
+/* ---- astrolabe: angles come from custom properties (hover on desktop, scroll on touch) ---- */
+#astrolabe-rete { transform: rotate(var(--rete, 0deg)); }
+#astrolabe-alidade { transform: rotate(var(--alidade, 0deg)); }
+@media (hover: hover) {
+  .luxury-button:is(:hover, :focus-visible) { --rete: 120deg; --alidade: -90deg; }   /* clockwise / counter-clockwise */
+}
+@media (hover: none) {
+  #astrolabe-rete, #astrolabe-alidade { transition: none; }                           /* JS smooths the angles itself */
+}
+.astro-star { fill: #F3E5AB; stroke: none; opacity: 0; transition: opacity var(--txp-time-heavy) var(--txp-ease-luxury); }
+.luxury-button:is(:hover, :focus-visible, .is-lit) .astro-star { opacity: 1; filter: drop-shadow(0 0 2px #F3E5AB); animation: astroTwinkle 2.4s ease-in-out infinite; }
+@keyframes astroTwinkle { 50% { opacity: .35; } }
+
+/* ---- footer sun: colour follows the visitor's local time (data-phase set by luxury.js) ---- */
+.helios { --sun: #D4AF37; --glow: rgba(212, 175, 55, .4); }                       /* day 06–18 */
+.helios[data-phase="sunset"] { --sun: #E65100; --glow: rgba(230, 81, 0, .5); }    /* sunset 18–22 */
+.helios[data-phase="night"] { --sun: #070709; --glow: rgba(243, 229, 171, .55); } /* night 22–06: eclipse */
+#helios-sun path { fill: var(--sun); transition: fill 2s var(--txp-ease-luxury); }
+.helios[data-phase="night"] #helios-sun path { stroke: rgba(243, 229, 171, .6); stroke-width: 20; stroke-linejoin: round; }
+.helios.is-armed.is-risen #helios-sun { filter: drop-shadow(0 0 8px var(--glow)); }
+.helios[data-phase="night"].is-armed.is-risen #helios-sun { filter: drop-shadow(0 0 5px var(--glow)) drop-shadow(0 0 16px rgba(212, 175, 55, .35)); } /* corona */
+@media (prefers-reduced-motion: reduce) { .astro-star { animation: none !important; } }
+
+
+/* ---- Investment Profile: monoline wallet that lets the bills glide out (home page only) ---- */
+.invest-cta { --mx: 0; --my: 0; }
+.invest-cta::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 38%, rgba(243, 229, 171, .2) 50%, transparent 62%); background-size: 260% 100%; background-position: 130% 0; transition: background-position 1.6s var(--txp-ease-luxury); }
+.invest-cta:is(:hover, :focus-visible)::after { background-position: -30% 0; }
+.wallet { display: grid; place-items: center; width: 54px; height: 48px; margin: -2px 6px -2px -8px; perspective: 320px; }
+.wallet svg { width: 100%; height: 100%; overflow: visible; fill: none; stroke: #D4AF37; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round;
+  transform: rotateY(calc(var(--mx) * 16deg)) rotateX(calc(var(--my) * -12deg)); transition: transform var(--txp-time-slow) var(--txp-ease-luxury), filter 1.2s var(--txp-ease-luxury); }
+.invest-cta:is(:hover, :focus-visible) .wallet svg { filter: drop-shadow(0 0 7px rgba(212, 175, 55, .38)); }
+.wallet .body { fill: none; }
+.wallet .stitch { stroke-width: .8; stroke-dasharray: 1.4 2.6; opacity: .45; }
+.wallet .clasp { fill: #D4AF37; stroke: none; }
+.wallet .bill > rect:first-child { fill: none; }
+.wallet .bill .in { stroke-width: .7; opacity: .55; }
+.wallet .bill circle { stroke-width: .8; }
+.wallet .bill { opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; transform: translateY(16px) scale(.96);
+  transition: transform 1.2s var(--txp-ease-luxury), opacity var(--txp-time-slow) var(--txp-ease-luxury); }           /* retreat: slow and weighty */
+.invest-cta:is(:hover, :focus-visible) .bill { opacity: 1; transition: transform 2s var(--txp-ease-luxury), opacity var(--txp-time-slow) var(--txp-ease-luxury); }   /* release: long, soft settle */
+.invest-cta:is(:hover, :focus-visible) .b1 { transform: translate(calc(-6px + var(--mx) * -2px), -22px) rotate(-9deg); }
+.invest-cta:is(:hover, :focus-visible) .b2 { transform: translate(calc(var(--mx) * 1px), -31px) rotate(1.5deg); transition-delay: .1s; }
+.invest-cta:is(:hover, :focus-visible) .b3 { transform: translate(calc(6px + var(--mx) * 2px), -24px) rotate(10deg); transition-delay: .2s; }
+@media (prefers-reduced-motion: reduce) { .invest-cta::after, .wallet svg, .wallet .bill { transition-duration: .01ms !important; } }

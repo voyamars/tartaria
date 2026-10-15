@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#060608" />
+<meta name="robots" content="noindex, nofollow" />
+<title>TARTARIA XP — Founder Investment Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#060608;--bg2:#0a090c;--gold:#D4AF37;--warm:#F3E5AB;--ruby:#7A1515;--text:#F4F1ED;--mut:rgba(244,241,237,.68);--line:rgba(255,255,255,.08);--ease:cubic-bezier(.25,1,.5,1);--serif:'Cinzel','Cormorant Garamond',serif;--sans:'Montserrat',sans-serif;--ed:'Cormorant Garamond',serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font:400 16px/1.75 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+.sec{padding:clamp(80px,12vw,150px) 0;border-top:1px solid var(--line)}.sec.alt{background:var(--bg2)}
+.k{display:flex;align-items:center;gap:16px;margin-bottom:26px;font:600 .7rem/1.5 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.k::before{content:"";width:30px;height:1px;background:var(--gold)}
+h2{font:500 clamp(1.7rem,3.8vw,3.1rem)/1.18 var(--serif);letter-spacing:.01em;text-wrap:balance;max-width:20em}
+.lead{max-width:62ch;margin-top:24px;color:var(--mut);font-size:1.06rem}
+.grid{display:grid;gap:2px;margin-top:56px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{position:relative;overflow:hidden;padding:clamp(28px,4vw,44px);border:1px solid var(--line);background:rgba(255,255,255,.022);transition:transform .7s var(--ease),border-color .5s,background .5s,box-shadow .7s var(--ease)}
+.card:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.38);background:rgba(212,175,55,.035);box-shadow:0 24px 50px rgba(0,0,0,.4)}
+.card[data-n]::after{content:attr(data-n);position:absolute;right:18px;top:8px;font:600 4.2rem/1 var(--serif);color:rgba(255,255,255,.03)}
+.card h3{font:500 1.18rem/1.4 var(--serif);margin-bottom:14px;color:var(--text)}.card p,.card li{color:var(--mut);font-size:.98rem}
+.tag{display:block;margin-bottom:16px;font:600 .66rem/1.5 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.big{font:600 clamp(1.5rem,2.6vw,2.1rem)/1.2 var(--serif);color:var(--warm);display:block;margin-bottom:12px}
+.ed{font:italic 400 clamp(1.45rem,2.3vw,2rem)/1.5 var(--ed);color:rgba(244,241,237,.82)}
+.rule li{list-style:none;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.06)}.rule li:last-child{border:0}
+.rule b{display:block;color:var(--text);font-weight:600;margin-bottom:3px}
+.cols2{columns:2;column-gap:34px}.cols2 li{break-inside:avoid}
+.ruby{display:inline-flex;align-items:center;gap:14px;position:relative;padding:19px 34px;border:1px solid rgba(212,175,55,.7);background:linear-gradient(135deg,#7A1515,#3B0808 78%);box-shadow:inset 0 0 26px rgba(0,0,0,.5),0 0 0 3px rgba(122,21,21,.5);font:600 .72rem/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--text);transition:transform .6s var(--ease),box-shadow .6s var(--ease)}
+.ruby::before{content:"";position:absolute;inset:4px;border:1px solid rgba(212,175,55,.3);pointer-events:none}
+.ruby:hover{transform:translateY(-3px);box-shadow:inset 0 0 26px rgba(0,0,0,.5),0 0 0 3px rgba(122,21,21,.6),0 16px 34px rgba(0,0,0,.45)}
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}.rv.on{opacity:1;transform:none}
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px clamp(20px,4vw,56px);transition:background .5s,padding .5s,translate 1s var(--ease)}
+nav.s{background:rgba(6,6,8,.86);backdrop-filter:blur(20px);padding:14px clamp(20px,4vw,56px);border-bottom:1px solid var(--line)}nav.h{translate:0 -110%}
+.logo{font:600 .95rem var(--serif);letter-spacing:.2em}.nl{display:flex;gap:26px;list-style:none}.nl a{font:600 .66rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mut);transition:color .4s}.nl a:hover{color:var(--warm)}
+.back{font:600 .66rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--warm)}
+/* hero */
+.hero{min-height:100svh;display:grid;align-content:center;padding:130px 0 70px;position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(122,21,21,.22),transparent 62%),radial-gradient(ellipse 60% 50% at 15% 105%,rgba(212,175,55,.09),transparent 60%)}
+.hero h1{font:600 clamp(2.6rem,8.4vw,7rem)/1 var(--serif);letter-spacing:.02em;background:linear-gradient(90deg,var(--text),var(--warm));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.by{display:block;margin:12px 0 26px 4px;font:500 .8rem var(--serif);letter-spacing:.3em;color:var(--warm);opacity:.8}
+.sub{max-width:34em;color:var(--mut);font-size:clamp(1rem,1.6vw,1.2rem)}
+.quote{margin:34px 0;max-width:30em}.quote p{font:italic 400 clamp(1.5rem,2.5vw,2.1rem)/1.4 var(--ed);color:rgba(244,241,237,.86)}.quote span{display:block;margin-top:10px;font:600 .68rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.stats{display:grid;grid-template-columns:.7fr 1.2fr 1.2fr;gap:36px;margin-top:64px;padding-top:34px;border-top:1px solid var(--line)}
+.stats b{display:block;font:600 clamp(.95rem,1.4vw,1.25rem)/1.35 var(--serif);color:var(--text)}.stats span{display:block;margin-top:8px;font-size:.9rem;color:var(--mut)}
+.mq{overflow:hidden;padding:22px 0;border-block:1px solid var(--line);background:rgba(212,175,55,.025)}.mq div{display:flex;width:max-content;animation:mq 40s linear infinite}
+.mq span{display:flex;align-items:center;gap:20px;padding:0 44px;font:600 .68rem var(--sans);letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.5);white-space:nowrap}.mq span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center}
+.vis{position:relative;min-height:420px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(122,21,21,.14),rgba(212,175,55,.07));display:grid;place-items:center;overflow:hidden}
+.vis i{position:absolute;font:600 clamp(5rem,12vw,9rem) var(--serif);color:rgba(255,255,255,.05);font-style:normal}
+.vis strong{position:relative;max-width:12em;text-align:center;font:500 clamp(1.1rem,2vw,1.5rem)/1.5 var(--serif);color:var(--warm);padding:0 24px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.chips span{padding:10px 18px;border:1px solid rgba(212,175,55,.3);font:600 .66rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--warm)}
+.panel{margin-top:2px;padding:clamp(34px,5vw,58px);border:1px solid rgba(212,175,55,.22);background:linear-gradient(120deg,rgba(212,175,55,.06),rgba(122,21,21,.12))}
+.panel h3{font:500 clamp(1.4rem,2.6vw,2.2rem)/1.3 var(--serif);max-width:24em;margin-bottom:20px}.panel p{max-width:60em;color:var(--mut)}.panel p+p{margin-top:16px}
+.note{margin-top:40px;padding:28px 34px;border:1px solid rgba(212,175,55,.25);background:linear-gradient(90deg,rgba(212,175,55,.07),transparent);font:600 .85rem var(--sans);letter-spacing:.14em}
+.total{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:34px;padding:30px 38px;border:1px solid rgba(212,175,55,.25);background:linear-gradient(90deg,rgba(212,175,55,.08),rgba(122,21,21,.12))}
+.total span{font:600 .7rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}.total b{font:600 clamp(1.5rem,3vw,2.2rem) var(--serif);color:var(--warm)}
+.cta{text-align:center;padding:clamp(100px,15vw,190px) 0 80px;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(122,21,21,.22),transparent 65%)}
+.cta h2{margin:0 auto 24px;max-width:12em;font-size:clamp(2.4rem,6vw,4.8rem)}.cta h2 em{font-style:normal;color:var(--gold)}.cta .lead{margin:0 auto 44px}
+footer{padding:34px clamp(20px,5vw,60px);border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font:600 .64rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+@media(max-width:900px){.nl{display:none}.two,.g2,.g3,.g4,.stats{grid-template-columns:1fr}.cols2{columns:1}.vis{min-height:280px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}}
+/* ---- aligned with the main site: obsidian glow, hairlines, ruby frame, Cinzel wordmark ---- */
+body{background:#060608}
+.hero{background:radial-gradient(circle at 50% 40%,rgba(212,175,55,.07) 0%,rgba(6,6,8,1) 70%)}
+.sec.alt{background:#08080b}
+.logo{font:500 .8rem var(--serif);letter-spacing:.34em;color:#F5EEE0}
+nav.s{background:rgba(6,6,8,.8)}
+.k::before{width:28px}
+.card{border-radius:0;background:rgba(255,255,255,.02)}
+.card:hover{box-shadow:0 26px 60px rgba(0,0,0,.45)}
+.ruby{background:linear-gradient(135deg,rgba(122,21,21,.9),rgba(59,8,8,.95));border:1px solid rgba(212,175,55,.5);box-shadow:inset 0 0 22px rgba(0,0,0,.45);letter-spacing:.2em}
+.ruby::before{inset:4px;border:1px solid rgba(212,175,55,.28)}
+.hero h1,h2{text-wrap:balance}
+footer{border-top:1px solid rgba(255,255,255,.07)}
+
+/* ---- footer sun (self-contained: colour from the visitor's local time, rises when the page end is reached) ---- */
+.ard{display:inline-grid;place-items:center}.ard .ar{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.sf{display:grid;justify-items:center;padding:56px 0 0;background:#040405;border-top:1px solid rgba(255,255,255,.07)}
+.sf .helios{--sun:#D4AF37;--glow:rgba(212,175,55,.4);width:48px;aspect-ratio:1094/553;margin:0 auto;clip-path:inset(-16px -16px 0 -16px)}
+.sf .helios[data-phase="sunset"]{--sun:#E65100;--glow:rgba(230,81,0,.5)}
+.sf .helios[data-phase="night"]{--sun:#070709;--glow:rgba(243,229,171,.55)}
+.sf .helios svg{display:block;width:100%;height:100%;overflow:visible}
+.sf #sfSun path{fill:var(--sun);transition:fill 2s ease}
+.sf .helios[data-phase="night"] #sfSun path{stroke:rgba(243,229,171,.6);stroke-width:20;stroke-linejoin:round}
+.sf #sfSun{transition:transform 3.5s ease-out,opacity 3.5s ease-out,filter 3.5s ease-out}
+.sf .helios.is-armed #sfSun{opacity:0;transform:translateY(100%)}
+.sf .helios.is-armed.is-risen #sfSun{opacity:1;transform:none;filter:drop-shadow(0 0 8px var(--glow))}
+.sf .helios[data-phase="night"].is-armed.is-risen #sfSun{filter:drop-shadow(0 0 5px var(--glow)) drop-shadow(0 0 16px rgba(212,175,55,.35))}
+.sf .rule{display:block;width:min(320px,70vw);height:1px;background:linear-gradient(90deg,transparent,#D4AF37,transparent)}
+.sf+footer{border-top:0}
+@media(prefers-reduced-motion:reduce){.sf #sfSun,.sf #sfSun path{transition:none!important}}
+</style>
+  <link rel="stylesheet" href="/motion.css?v=__STAMP__" />
+  <link rel="stylesheet" href="/mobile.css?v=__STAMP__" />
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="/">TARTARIA XP</a>
+  <ul class="nl"><li><a href="#vision">Vision</a></li><li><a href="#strategy">Strategy</a></li><li><a href="#cinematic">WOW</a></li><li><a href="#market">Market</a></li><li><a href="#founder">Founder</a></li><li><a href="#finance">Investment</a></li></ul>
+  <a class="back" href="/">Back to site</a>
+</nav>
+
+<header class="hero"><div class="wrap">
+  <span class="k">Founder Investment Portfolio · Restricted for Strategic Private Acquisition</span>
+  <h1>TARTARIA XP</h1><span class="by">by Nomadia</span>
+  <p class="sub">Intellectual and cultural expeditions across Central Asia</p>
+  <div class="quote"><p>“The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.”</p><span>Marcel Proust</span></div>
+  <a class="ruby" href="#vision">Open portfolio <span class="ard" aria-hidden="true"><svg class="ar" viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M2.5 8h10.5M9 4l4 4-4 4"/></svg></span></a>
+  <div class="stats">
+    <div><b>₸100M</b><span>investment mandate</span></div>
+    <div><b>Blue Ocean strategy</b><span>zero competition in the “intellectual luxury” segment</span></div>
+    <div><b>Avant-garde theatre of experience</b><span>a cinematic La La Land for the world’s intellectual elite</span></div>
+  </div>
+</div></header>
+
+<div class="mq"><div id="mq"></div></div>
+
+<section class="sec" id="vision"><div class="wrap two">
+  <div class="rv"><span class="k">Avant-garde theatre of experience</span><h2>We remove the banality from travel</h2>
+    <p class="lead">What Cirque du Soleil did for the circus, we do for tourism. We are creating an Avant-garde Theatre of Experience on the great stage of the Kazakh steppe.</p>
+    <p class="lead">It is an uncompromising act of national pride: the heritage of our homeland becomes an object of absolute admiration for the global elite.</p></div>
+  <div class="rv"><div class="vis"><i>XP</i><strong>We are not tour operators — we are engineers of a new vision</strong></div>
+    <div class="chips"><span>Zheruyyq</span><span>La La Land</span><span>New luxury</span></div></div>
+</div></section>
+
+<section class="sec alt"><div class="wrap">
+  <div class="rv"><span class="k">Strategic macro concept</span><h2>The global map of luxury is being redrawn</h2></div>
+  <div class="two" style="margin-top:50px">
+    <p class="lead rv" style="margin:0">The traditional Persian Gulf hubs are oversaturated and losing stability. In search of a safe alternative, the global elite is turning its gaze to the “New North”. Kazakhstan becomes that corridor — a reliable, deep and untouched space for those who value predictability over risk.</p>
+    <blockquote class="ed rv" style="padding-left:28px;border-left:2px solid var(--gold)">Zheruyyq — a land of absolute harmony and untouched depth, designed as an immersive, cinematic La La Land for the world’s intellectual elite.</blockquote>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="rv"><span class="k">Positioning model</span><h2>Kazakhstan is no longer just a destination</h2>
+    <p class="lead">It is becoming a new global intellectual hub. <b style="color:var(--warm)">We are not tour operators — we are engineers of a new vision.</b> We are catching the large-scale shift of high-net-worth migration toward authentic, safe and culturally deep territories.</p></div>
+  <div class="grid g3 cards" data-n='[["Authenticity","Access to culturally deep territories and the living memory of the Great Steppe."],["Safety","A carefully designed environment for an international, intellectual and affluent audience."],["Depth","Travel as a transformation of perspective, not passive consumption of an itinerary."]]'></div>
+</div></section>
+
+<section class="sec alt" id="format"><div class="wrap">
+  <div class="rv"><span class="k">Market scaling engine</span><h2>The climb to the summit</h2>
+    <p class="lead">Mass tourism is a race for survival. Tartaria Expeditions is a climb to the summit.</p></div>
+  <div class="grid g3 cards" data-t='1' data-n='[["Zero competition","Creating a standalone segment of “Intellectual luxury”.","Blue Ocean"],["Narrative superiority","We own the story of the Great Steppe and turn it into a global cultural asset.","Narrative"],["Operational discretion","High margins through curated exclusivity, not volume.","Margin"],["Premium media content","Monetisation beyond expeditions through media and global stories.","Media"],["Elite publishing projects","Books, visual archives and collectible narrative formats.","Publishing"],["Global collaborations","National merchandise, exclusive keepsakes and strategic partnerships.","Collaboration"]]'></div>
+</div></section>
+
+<section class="sec" id="audience"><div class="wrap">
+  <div class="rv"><span class="k">Product architecture</span><h2>Not an itinerary. A personal discovery.</h2>
+    <p class="lead">Tartaria Expeditions turns travel into an intellectual and cultural narrative, where geography, history, folklore and personal experience form a single dramaturgy.</p></div>
+  <div class="grid g2 cards" data-t='1' data-n='[["Direct immersion instead of passive observation","Replace passive sightseeing with a powerful sense of personal discovery and direct immersion in the history of the region.","Core proposition"],["Premium international market","Discerning travellers tired of mass tourism and seeking deep, meaningful engagement with the region.","Target audience"]]'></div>
+</div></section>
+
+<section class="sec alt" id="strategy"><div class="wrap">
+  <div class="rv"><span class="k">TARTARIA XP strategy</span><h2>Blue Ocean in expeditions — ERRC</h2>
+    <p class="lead">The Eliminate–Reduce–Raise–Create matrix rebuilds the familiar economics of tourism: we abolish industry templates, cut intermediaries, raise the standards of the field experience and create a new category of intellectual luxury.</p></div>
+  <div class="grid g2" id="errc" style="gap:18px"></div>
+</div></section>
+
+<section class="sec" id="cinematic"><div class="wrap">
+  <div class="rv"><span class="k">Wow effect · Cinematic asset</span><h2>The journey ends with a film. The story is only beginning.</h2></div>
+  <div class="two rv" style="margin-top:44px;align-items:end">
+    <p class="ed">At the end of every journey our client receives not a set of clips but a professionally directed, National Geographic-grade mini-film. The traveller stops being a mere tourist and becomes an inquisitive explorer, a conqueror of the elements and an intellectual standing at the edge of the possible.</p>
+    <div class="card"><span class="tag">The client’s final asset</span><span class="big">A personal cinematic story of international calibre</span></div>
+  </div>
+  <div class="grid g3 cards" data-t='1' data-n='[["Cinematic scale","Top-tier filming and editing turn a demanding route into a gripping narrative. Every frame builds the atmosphere of an epic adventure and underlines the status, character and stature of the hero.","Product capitalisation"],["Premium audio narration","Professional English voice-over gives the story global weight. A deep, cinematic timbre turns narration into an instrument of immersion and makes the experience clear to an international audience.","Global Voice"],["Capitalisation of social status","A personal success story crafted as a work of art becomes a personal-branding tool: it inspires admiration, signals high status and naturally enters the agenda of influential circles.","Personal Brand Equity"]]'></div>
+  <div class="panel rv"><span class="tag">Original scoring</span><h3>A soundtrack as an extension of the hero’s character</h3>
+    <p>A composer accompanies the film crew, so the music is created alongside the story and becomes an organic extension of the expedition’s atmosphere. Reinterpreting the philosophy of the Kazakh “kui” — the art of an instant, honest musical response — we create a score that makes the film deep, whole and truly sincere.</p>
+    <p style="color:var(--gold);font-weight:600;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase">Result: an exclusive soundtrack that exists in a single copy.</p></div>
+  <div class="panel rv" style="margin-top:18px"><span class="tag">Product philosophy</span><h3>The most powerful viral engine is a genuine success story.</h3>
+    <p>We do not merely tell the story of a trip — we broadcast a philosophy of success, turning every metre of a demanding path into a chapter of a shared story.</p>
+    <p>This is not just an expedition. We create a space where every kilometre travelled becomes a manifesto of shared values and every challenge a confirmation of our client’s strategy. We are the architects of this experience, and it is this deep involvement that makes the content alive, emotionally charged and genuinely viral.</p></div>
+</div></section>
+
+<section class="sec alt" id="market"><div class="wrap">
+  <div class="rv"><span class="k">Macro indicators and financial mandate</span><h2>Market validation and goals</h2></div>
+  <div class="grid g4 cards" data-m='1' data-n='[["15.3M","arrivals in 2024 — the historic baseline of cross-border visitors."],["15.7M","arrivals in January–September 2025 — an official record."],["52nd","place worldwide after a 14-position jump in the WEF index."],["93%","growth in interest in Kazakhstan from the US.","Analysis by Mastercard Tourism Insights × D/AI Destinations"]]'></div>
+  <div class="note rv">WE DO NOT FOLLOW THE WAVE. WE DESIGN IT.</div>
+</div></section>
+
+<section class="sec" id="founder"><div class="wrap">
+  <div class="rv"><span class="k">Founder’s executive dossier</span><h2>Rakhat T. Akhmet</h2>
+    <p style="margin-top:14px"><a href="https://www.instagram.com/rahat_akhmet" target="_blank" rel="noopener" style="color:var(--warm);letter-spacing:.14em;font-weight:600;font-size:.8rem">@rahat_akhmet</a></p></div>
+  <div class="grid g2">
+    <div class="card rv"><span class="tag">Entrepreneur · Intellectual Architect</span><h3>Founder and creative producer of the project</h3>
+      <p>Entrepreneur behind Argumentum Academy and American Dream, dedicated to rethinking the cultural identity of Central Asia. Through Nomadia Travel and Tartaria XP he builds global narratives that bridge the gap between historical heritage and cutting-edge modern experience.</p></div>
+    <div class="card rv"><span class="tag">International operating profile</span><h3>International operating architecture</h3>
+      <div class="chips" style="margin:0 0 18px"><span>UKM · Master of Social Sciences, Kuala Lumpur</span><span>Travel vlogging and English-language content</span><span>Kazakhstan · UAE · Malaysia · South Korea · Turkey</span></div>
+      <ul class="rule"><li>Kazakh, English, Turkish, Russian and Arabic</li><li>Hands-on experience in travel vlogging</li><li>English-language media content for a global audience</li><li>YouTube: @Rahat Argumentum, @Nomad Observer</li><li>Instagram: @Qazaqstan_nature</li></ul></div>
+  </div>
+</div></section>
+
+<section class="sec alt"><div class="wrap">
+  <div class="rv"><span class="k">Ecosystem diversification</span><h2>Sports tourism: kinetic endurance</h2></div>
+  <div class="grid g2 cards" data-t='1' data-n='[["The limits of human capability","A closed, elite platform that tests the limits of human capability through the power of kinetic endurance — the physical counterweight to the intellectual expeditions.","Closed Elite Platform"],["European fighter pipeline","Ready-made MMA fighters — amateur and professional — from France and across Europe who prefer Kazakhstan to Thailand.","European Fighter Pipeline"]]'></div>
+</div></section>
+
+<section class="sec" id="finance"><div class="wrap">
+  <div class="rv"><span class="k">Investment mandate</span><h2>₸100,000,000 of targeted funding</h2>
+    <p class="lead">The total investment sought is ₸100,000,000 (one hundred million tenge). Funding is provided in targeted tranches according to the following schedule.</p></div>
+  <div class="grid g3" id="tr"></div>
+  <div class="total rv"><span>Total investment sought</span><b>₸100,000,000</b></div>
+</div></section>
+
+<section class="sec alt"><div class="wrap two">
+  <div class="rv"><span class="k">Hidden architecture</span><h2>The most valuable components of the model are not shown on slides</h2><p class="lead">The synergy of content, travel and culture is revealed in person.</p></div>
+  <div class="card rv"><p class="ed">Create history together with me and my team, if you share this vision.</p></div>
+</div></section>
+
+<section class="cta sec" id="contact"><div class="wrap">
+  <p class="k rv" style="justify-content:center">Restricted for Strategic Private Acquisition</p>
+  <h2 class="rv">Let us create <em>a new story</em></h2>
+  <p class="lead rv">TARTARIA XP — a next-generation intellectual and cultural platform for the world’s elite.</p>
+  <a class="ruby rv" href="https://www.instagram.com/rahat_akhmet" target="_blank" rel="noopener">@rahat_akhmet</a>
+  <p class="k rv" style="justify-content:center;margin-top:90px;color:rgba(255,255,255,.35)">SAATCHI &amp; SAATCHI</p>
+</div></section>
+
+<div class="sf" aria-hidden="true"><div class="helios" id="sfWrap"><svg id="sfSun" viewBox="79 64 1094 553" focusable="false"><path fill="#D4AF37" fill-rule="evenodd" d="M883 608C879 609 874 610 870 611C866 612 858 614 858 615C858 616 865 616 869 616C873 616 878 616 882 616C887 616 891 616 895 616C900 616 904 616 909 616C913 616 919 616 922 616C924 616 924 614 922 613C919 612 913 611 909 610C905 609 900 608 896 608C892 608 887 608 883 608ZM642 69C642 69 637 76 634 80C632 83 629 87 627 90C625 94 622 98 620 102C618 105 616 109 614 113C612 117 610 121 608 124C606 128 605 132 603 137C602 141 600 145 599 149C598 153 598 157 597 162C596 166 596 170 596 175C596 179 597 183 598 187C599 192 599 196 601 200C602 204 604 208 605 212C607 216 609 220 611 224C612 228 614 232 616 236C617 240 618 245 618 249C618 253 619 257 618 262C617 266 615 270 613 274C611 278 609 281 606 285C604 288 601 292 598 295C596 298 593 302 590 305C588 309 585 312 583 316C581 320 580 324 578 328C577 332 576 336 575 341C574 345 574 349 574 354C574 358 574 362 575 367C576 371 577 375 578 379C579 383 583 388 582 391C582 395 578 398 575 400C572 402 566 403 562 403C558 403 554 400 551 398C547 396 543 393 541 390C538 387 535 383 533 380C531 376 529 372 528 368C527 363 526 359 526 355C526 350 527 346 528 342C529 338 530 333 531 329C532 325 533 321 534 317C535 312 536 308 536 304C536 299 536 295 535 291C534 287 532 282 531 279C529 275 526 271 524 267C521 264 518 261 515 257C512 254 509 252 506 249C503 246 499 243 496 240C493 237 490 234 487 231C484 228 481 225 478 221C476 218 473 214 471 210C469 207 467 203 466 199C464 195 462 191 461 186C460 182 460 178 459 174C458 169 458 165 458 161C458 156 458 152 458 148C458 143 460 136 459 135C459 134 457 138 455 142C454 145 452 150 451 154C449 158 448 162 447 166C446 170 446 175 445 179C444 183 444 188 444 192C444 196 445 201 445 205C446 209 447 213 448 218C449 222 451 226 453 230C454 234 457 237 459 241C461 245 464 248 467 251C470 255 473 258 476 261C479 264 482 267 485 270C487 274 490 277 491 281C493 285 495 289 496 294C497 298 496 302 496 307C496 311 494 315 493 319C492 323 490 327 489 332C488 336 486 340 485 344C484 348 483 352 483 357C483 361 483 365 483 370C484 374 485 378 486 382C487 387 489 391 491 395C492 398 494 402 497 406C499 409 503 412 505 416C507 420 508 424 507 427C505 430 500 433 496 434C492 435 487 435 483 434C479 433 475 431 471 429C467 427 464 424 460 421C457 419 454 416 451 413C448 410 445 406 443 402C441 398 439 394 438 390C436 386 435 382 434 378C433 374 433 369 432 365C431 361 431 357 430 352C429 348 428 344 427 340C426 336 424 332 422 328C420 324 418 320 415 317C412 314 409 310 406 308C402 305 399 303 395 300C391 298 387 296 383 294C380 293 376 291 372 289C368 287 364 286 360 284C356 282 352 280 348 278C345 276 341 273 338 270C334 268 331 265 328 262C325 259 322 256 319 252C316 249 314 246 311 242C309 239 306 235 304 231C302 227 300 224 298 220C296 216 294 212 292 208C290 204 287 197 287 196C286 196 286 201 287 205C287 208 288 213 289 217C290 222 291 226 292 230C293 234 294 239 296 243C297 247 298 251 300 255C301 259 303 263 305 267C307 271 309 275 311 278C313 282 316 286 318 289C321 292 324 296 327 298C330 301 334 304 338 306C341 308 345 310 349 312C353 314 357 316 361 318C365 320 368 323 371 325C375 328 378 331 380 335C383 338 385 342 386 346C388 350 389 355 390 359C391 363 392 367 392 372C392 376 392 380 392 385C392 389 393 393 394 397C395 402 396 406 397 410C398 414 400 418 402 422C404 426 406 430 409 433C411 437 414 440 417 443C420 446 423 449 426 452C430 455 433 458 437 460C440 462 446 463 448 466C451 469 452 473 451 476C450 480 446 484 442 486C439 488 434 489 430 489C426 489 421 489 417 488C413 487 409 486 405 484C401 483 397 481 393 479C389 476 386 474 383 471C380 468 377 464 375 460C373 457 371 453 369 449C367 445 365 441 363 437C361 433 359 429 357 426C355 422 353 418 350 415C347 412 344 408 341 406C337 403 333 401 329 399C325 397 321 396 317 395C313 394 309 393 304 393C300 393 296 393 291 393C287 393 283 393 278 393C274 393 270 393 265 393C261 393 257 392 252 391C248 390 244 389 240 388C236 387 232 385 228 383C224 381 220 379 217 377C213 374 209 372 206 369C203 366 199 364 196 361C193 358 190 355 187 352C184 349 180 344 178 342C176 340 173 337 173 339C173 340 177 346 179 350C181 354 183 358 185 362C187 366 189 369 191 373C194 377 196 380 199 384C202 387 204 391 207 394C210 397 213 400 217 403C220 405 223 408 227 411C230 413 234 415 238 417C242 419 246 420 250 421C255 423 259 423 263 424C267 425 272 425 276 425C280 425 285 425 289 426C293 427 298 428 301 430C305 431 309 434 312 436C316 439 318 443 321 446C323 450 325 454 327 458C328 462 330 466 331 470C333 474 334 478 336 482C338 486 340 490 342 494C344 497 347 501 350 504C353 507 356 510 360 513C363 515 367 518 371 520C374 522 378 523 382 525C387 526 391 527 395 528C399 529 405 528 408 530C411 532 415 534 415 538C415 541 413 547 411 550C408 553 404 555 400 556C396 558 392 559 388 560C383 561 379 562 375 562C371 562 366 561 362 560C358 560 353 559 349 557C345 555 342 553 338 551C334 549 331 546 328 543C324 540 321 537 318 534C315 531 312 528 309 526C305 523 302 520 298 518C294 516 290 514 286 513C282 511 278 510 274 509C269 509 265 508 261 508C256 508 252 509 248 510C244 510 239 512 235 513C231 514 227 516 223 517C219 519 215 520 211 522C207 523 203 525 198 526C194 527 190 528 186 528C181 529 177 530 173 530C169 530 164 530 160 530C156 529 151 529 147 528C143 527 138 526 134 525C130 524 126 523 122 522C118 520 114 519 110 517C106 515 102 514 98 512C94 510 87 506 86 506C85 506 89 510 92 512C95 515 98 518 102 521C105 523 109 526 112 529C116 531 119 534 123 536C126 538 130 540 134 542C138 544 142 546 146 548C150 549 154 551 158 552C162 553 167 554 171 555C175 555 179 556 184 556C188 556 192 556 197 556C201 556 205 555 210 554C214 554 218 553 222 552C227 551 231 549 235 549C239 548 244 547 248 547C252 547 256 548 261 549C265 550 269 552 273 554C276 556 280 559 283 562C286 565 290 567 293 571C296 574 298 577 301 580C304 583 308 586 311 589C314 591 318 594 322 596C326 598 330 600 334 601C338 603 342 604 346 605C350 606 355 607 359 607C363 607 368 607 372 607C376 607 381 606 385 605C389 604 395 601 397 603C400 604 399 612 402 614C405 616 410 616 414 616C418 616 423 616 427 616C431 616 437 616 439 614C441 611 439 605 439 601C440 597 440 592 441 588C442 584 442 579 443 575C444 571 446 567 447 563C448 559 449 554 451 550C452 546 454 542 456 538C458 535 460 531 462 527C464 523 466 519 468 516C471 512 473 508 476 505C478 502 481 498 484 495C487 492 490 488 493 485C496 482 499 479 502 477C506 474 509 471 512 468C516 466 519 463 523 461C527 459 530 456 534 454C538 452 542 450 546 448C550 446 554 445 558 443C562 441 566 440 570 439C574 437 578 436 582 435C587 434 591 433 595 432C599 432 604 431 608 430C612 430 616 429 621 429C625 429 629 429 634 429C638 429 642 430 647 430C651 430 655 431 660 432C664 432 668 433 672 434C676 435 681 436 685 438C689 439 693 440 697 442C701 444 705 445 709 447C713 449 717 451 721 453C724 455 728 457 732 460C735 462 739 465 742 467C746 470 749 473 752 476C755 479 758 482 761 485C764 488 767 491 770 494C773 498 776 501 778 505C781 508 783 512 785 516C788 519 790 523 792 527C794 531 796 535 798 539C799 542 801 546 803 551C804 555 805 559 807 563C808 567 809 571 810 575C811 580 812 584 812 588C813 592 814 597 814 601C814 605 812 611 814 614C816 616 822 616 826 616C830 616 835 616 839 616C843 616 850 617 852 615C853 613 849 607 849 603C849 599 850 594 853 591C855 587 859 584 862 581C865 579 869 576 873 574C876 572 880 570 885 569C889 568 893 567 897 566C902 566 906 566 910 567C914 567 919 568 923 569C927 570 931 572 935 573C939 575 943 576 947 578C951 579 956 581 960 582C964 583 968 584 973 584C977 584 981 584 986 584C990 584 994 583 998 582C1003 581 1007 580 1011 578C1015 576 1018 574 1022 572C1026 569 1029 567 1032 564C1036 561 1039 558 1042 556C1046 553 1049 550 1052 547C1056 545 1059 542 1063 540C1067 538 1071 536 1075 534C1079 533 1083 531 1087 530C1091 529 1095 528 1100 527C1104 526 1108 526 1113 526C1117 526 1121 526 1126 526C1130 526 1134 526 1139 527C1143 527 1147 528 1151 529C1156 529 1163 531 1164 531C1165 531 1162 529 1159 528C1157 526 1151 524 1147 523C1143 521 1139 520 1135 519C1131 517 1127 516 1123 515C1118 514 1114 513 1110 512C1106 512 1101 511 1097 511C1093 510 1088 510 1084 510C1080 510 1075 510 1071 510C1067 511 1063 511 1058 512C1054 513 1050 514 1046 516C1042 517 1038 519 1034 521C1030 523 1027 526 1023 528C1019 530 1016 533 1012 535C1009 538 1005 540 1001 541C996 542 992 543 988 543C983 543 979 543 975 542C971 541 966 540 962 538C958 537 954 535 951 533C947 531 943 529 939 528C935 526 931 524 927 523C923 521 918 520 914 520C910 519 906 519 901 519C897 519 892 519 888 519C884 520 880 521 876 522C871 523 867 525 863 527C859 528 856 531 852 533C848 535 844 540 841 540C838 539 834 534 833 531C831 527 830 522 831 518C831 514 833 510 835 506C837 502 840 499 842 495C845 492 848 489 852 486C855 483 859 481 862 479C866 477 870 475 874 474C879 473 883 472 887 472C891 472 896 472 900 472C904 472 909 472 913 472C917 472 922 472 926 472C930 472 935 471 939 470C943 469 947 468 951 467C955 465 959 463 963 461C967 459 970 456 973 453C976 450 979 447 982 443C985 440 987 436 989 433C992 429 994 425 997 422C999 418 1002 415 1005 412C1007 408 1010 405 1014 402C1017 399 1020 397 1024 394C1028 392 1031 390 1035 388C1039 386 1043 384 1047 383C1051 381 1056 380 1060 379C1064 378 1068 377 1072 377C1077 376 1082 375 1085 375C1088 374 1091 374 1089 373C1088 372 1081 372 1077 371C1072 371 1068 370 1064 370C1059 370 1055 370 1051 370C1046 370 1042 371 1038 371C1034 372 1029 372 1025 373C1021 374 1017 375 1013 377C1008 378 1004 380 1000 382C997 383 993 386 989 388C986 390 982 393 979 396C976 399 973 402 970 405C967 408 964 412 961 415C958 418 955 421 951 423C947 425 943 428 939 429C935 430 931 431 927 431C922 431 918 431 914 431C909 431 905 430 901 430C896 429 892 429 888 429C883 429 879 429 875 429C870 430 866 431 862 432C858 433 854 434 850 436C846 437 842 439 838 442C834 444 831 446 827 449C824 451 821 454 818 457C815 461 813 465 810 468C807 470 803 474 800 473C797 473 793 468 791 464C789 460 787 456 787 452C787 448 788 443 789 439C790 435 791 431 793 427C795 423 797 419 799 415C802 412 804 408 807 405C810 402 814 399 817 397C821 394 825 392 829 390C832 389 837 387 841 385C845 384 849 383 853 381C857 379 861 378 865 376C869 374 872 371 876 369C879 366 882 364 886 360C889 357 892 354 894 351C897 347 899 343 901 339C902 336 904 332 905 327C907 323 908 319 909 315C910 311 911 307 913 303C914 298 916 294 918 290C919 286 921 283 924 279C926 275 928 272 931 268C934 265 937 262 940 258C943 255 946 252 949 249C952 246 955 244 959 241C962 238 966 236 969 233C973 230 976 228 980 226C983 223 987 221 991 218C994 216 1001 212 1002 212C1002 211 995 213 992 214C988 215 983 217 979 219C975 220 971 222 967 223C963 225 959 226 955 228C951 230 947 232 943 234C940 235 936 238 932 240C928 242 924 244 921 246C917 249 914 251 910 254C907 257 904 260 901 263C898 266 895 270 893 273C890 277 888 280 886 284C884 288 882 292 881 296C879 300 878 304 876 308C874 312 872 316 870 320C868 323 865 327 862 330C859 333 856 336 852 338C848 340 844 342 840 343C836 345 832 346 828 347C823 348 819 349 815 350C811 351 806 352 802 354C798 355 794 357 790 359C787 361 783 363 779 365C776 368 773 371 769 374C766 377 764 380 761 384C759 387 756 391 754 395C752 398 750 402 748 406C747 410 747 416 745 419C742 421 738 421 734 420C731 419 726 417 723 414C720 411 719 407 718 403C716 399 715 394 715 390C715 386 715 381 716 377C717 373 718 368 720 365C722 361 724 357 727 353C729 350 732 347 735 344C739 341 742 338 745 336C749 333 752 330 756 327C759 324 762 321 764 318C767 314 769 311 771 307C773 303 774 299 775 294C776 290 777 286 777 282C777 277 777 273 777 269C776 264 776 260 775 256C774 251 774 247 773 243C773 239 772 234 772 230C772 226 772 221 772 217C772 213 773 208 774 204C775 200 776 196 778 192C780 188 782 184 784 180C786 177 789 173 791 170C794 166 797 163 800 160C802 156 806 153 809 150C812 148 817 143 817 143C816 143 809 146 805 148C801 150 797 152 793 154C790 156 786 159 782 161C779 164 775 166 772 169C769 172 766 175 763 178C760 181 757 185 755 188C752 192 750 196 749 200C747 204 746 208 745 212C744 216 743 221 742 225C742 229 742 234 742 238C742 242 743 246 743 251C743 255 743 259 743 264C743 268 742 272 741 277C740 281 739 285 736 289C734 292 731 296 728 299C725 302 722 304 718 307C715 309 711 311 707 314C704 316 700 319 697 322C694 324 690 328 688 331C685 334 682 338 680 341C678 345 676 349 675 353C673 357 672 361 671 366C670 370 669 374 669 378C669 383 671 388 670 391C668 394 663 396 659 396C656 397 650 396 647 394C643 392 640 389 637 386C635 382 632 378 631 375C629 371 627 367 626 363C625 358 624 354 624 350C624 345 625 341 626 337C627 333 629 329 631 325C633 321 635 317 637 314C640 310 642 307 644 303C647 299 649 295 651 291C652 287 654 284 656 279C657 275 658 271 658 267C658 262 658 258 658 254C658 249 657 245 655 241C654 237 652 233 651 229C649 225 647 221 644 217C642 214 640 210 638 206C636 202 634 198 632 195C630 191 629 187 627 183C626 178 625 174 624 170C623 166 622 161 622 157C622 153 622 149 622 144C622 140 623 136 623 131C624 127 625 123 626 119C627 114 628 110 629 106C630 102 631 98 633 94C634 89 636 85 637 81C639 77 642 69 642 69Z"/></svg></div><span class="rule"></span></div>
+<footer><span>TARTARIA XP</span><span>Founder Investment Portfolio · Restricted</span><span>Kazakhstan · Central Asia</span></footer>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (id) => document.getElementById(id), reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- content that repeats ---------- */
+  const ERRC = [
+    ["Eliminate", "What is eliminated", "E", 0, [["Mass tourism","A strict ban on groups of more than 8 people. No coach tours and no “school-trip” excursions."],["Tour packages","The very idea of a “service package” is abolished. TARTARIA XP is an immersive expedition, not a menu of options."],["Tourist traps","No souvenir stalls, roadside canteens or mandatory scheduled stops."],["Bureaucracy","No paper vouchers and no slow approvals. Every process is digital."],["Standard price lists","No “economy” and “standard” tiers. A fixed price for a deep, complete experience."],["Dictatorship of the timetable","A flexible expedition rhythm. The focus is on the atmosphere of the place, not on restaurant opening hours."]]],
+    ["Reduce", "What is streamlined", "R", 0, [["Administrative chaos","Fully automated booking and digital support. The “office layer” is removed so questions are solved instantly."],["Chain of intermediaries","Working directly with local communities: farmers, archaeologists and custodians of unique locations. No “tourist filters”."],["Formal guiding","No “walking Wikipedia” format. Our guides are master storytellers who live the context of each place."],["Traditional marketing","No cold advertising. Content is built on documentary stories that immerse guests in the essence of the project before departure."]]],
+    ["Raise", "Premium standards", "R", 1, [["“Wild” service","Boutique-hotel standards carried into the field: from mobile shower systems to a professional kitchen."],["Intellectual standard","Guides are experts in nomad history and philosophy. Meaning is revealed instead of a superficial overview."],["Personalised experience","An “intellectual profile” of each guest is created before the expedition to adapt the content to their interests."],["Safety as comfort","Starlink satellite connectivity and professional tracking systems in zones without coverage."],["Exclusive access","Working with the leaders of local communities. The guest is always an invited person, never a random visitor."]]],
+    ["Create", "New value", "C", 1, [["Personal digital legacy","A professional documentary mini-film is created for every guest."],["Audio companion","Original sound design, music and podcasts adapted to the character and emotions of the route."],["Intellectual constructor","A choice of depth of immersion: from cultural observation to scientific research."],["Nomadia digital passport","A unique identifier of expedition history with a cumulative privilege system."],["After-Expedition Care","Intellectual dialogue continues after the trip through exclusive materials and research."],["Personal archive","Access to a member area with all scientific references, maps and historical background."],["Nomadia private club","An alumni community with access to secret departures and lectures, including the Kazakh Exodus."],["Media integration","The chance for a guest to become the hero of the content, leaving a mark on the story of the project."],["Access to the “invisible”","Exclusive permits to visit private archaeological and sacred sites."],["Event timing","Expeditions synchronised with rare astronomical phenomena and cultural festivals."]]],
+  ];
+  $("errc").innerHTML = ERRC.map(([n, sub, l, wide, items], i) => `<article class="card rv" data-n="${l}" style="${wide ? "grid-column:1/-1" : ""}"><span class="tag">0${i + 1} · ${sub}</span><h3 style="font-size:1.5rem">${n}</h3><ul class="rule ${wide ? "cols2" : ""}">${items.map(([t, d]) => `<li><b>${t}</b>${d}</li>`).join("")}</ul></article>`).join("");
+  $("tr").innerHTML = [["1","₸50,000,000",["IT platform development","Branding","Route scouting in Kazakhstan","Pilot departures"]],["2","₸25,000,000",["Equipment purchase","Premium gear","Media content production","Influencer partnerships"]],["3","₸25,000,000",["Operating working capital","Marketing launch","Entry into the US and EU markets","Attracting tourists to Kazakhstan"]]]
+    .map(([n, a, it]) => `<div class="card rv" data-n="${n}"><span class="tag">Tranche No.${n}</span><span class="big">${a}</span><ul class="rule">${it.map((x) => `<li>— ${x}</li>`).join("")}</ul></div>`).join("");
+  document.querySelectorAll(".cards").forEach((g) => JSON.parse(g.dataset.n).forEach((c, i) => {
+    const d = document.createElement("div"); d.className = "card rv"; d.dataset.n = "0" + (i + 1);
+    d.innerHTML = g.dataset.m ? `<span class="big">${c[0]}</span><p>${c[1]}</p>${c[2] ? `<span class="tag" style="margin:16px 0 0;font-size:.58rem">${c[2]}</span>` : ""}` : `${c[2] ? `<span class="tag">${c[2]}</span>` : ""}<h3>${c[0]}</h3><p>${c[1]}</p>`;
+    g.appendChild(d);
+  }));
+  const words = ["Intellectual luxury","The Great Steppe","Zheruyyq","The New North","Narrative Travel","Cultural Expeditions","Private Acquisition"];
+  $("mq").innerHTML = [...words, ...words].map((w) => `<span>${w}</span>`).join("");
+
+  /* ---------- reveal, nav ---------- */
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+  document.querySelectorAll(".rv").forEach((el, i) => { el.style.transitionDelay = (i % 3) * 0.08 + "s"; io.observe(el); });
+  const nav = $("nav"); let ly = scrollY;
+  addEventListener("scroll", () => { const y = scrollY; nav.classList.toggle("s", y > 60); nav.classList.toggle("h", y > ly + 4 && y > 220 ? true : y < ly - 4 ? false : nav.classList.contains("h")); ly = y; }, { passive: true });
+
+})();
+</script>
+<script>
+/* footer sun: local-time colour; rises when the very end of the page is reached (phones: 48px tolerance) */
+(() => {
+  const w = document.getElementById("sfWrap"); if (!w) return;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches, touch = matchMedia("(hover: none), (pointer: coarse)").matches;
+  const phase = () => { const h = new Date().getHours(); w.dataset.phase = h >= 6 && h < 18 ? "day" : h >= 18 && h < 22 ? "sunset" : "night"; };
+  phase(); setInterval(phase, 60000);
+  if (reduced) { w.classList.add("is-risen"); return; }
+  w.classList.add("is-armed");
+  let tick = false;
+  const upd = () => {
+    tick = false;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    if (max <= 40) return;
+    if (scrollY >= max - (touch ? 48 : 10)) w.classList.add("is-risen");
+    else if (scrollY < max - 220) w.classList.remove("is-risen");
+  };
+  const req = () => { if (!tick) { tick = true; requestAnimationFrame(upd); } };
+  addEventListener("scroll", req, { passive: true }); addEventListener("resize", req); addEventListener("load", req);
+  if ("ResizeObserver" in window) new ResizeObserver(req).observe(document.documentElement);
+})();
+</script>
+</body>
+</html>
+

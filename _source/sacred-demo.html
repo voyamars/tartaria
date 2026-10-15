@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Sacred SVG — demo</title>
+  <link rel="stylesheet" href="sacred-svg.css" />
+  <style>
+    :root { color-scheme: dark; }
+    body { margin: 0; background: #060608; color: #e9e2d0; font: 16px/1.6 Georgia, serif; }
+    section { position: relative; min-height: 100vh; display: grid; place-items: center; padding: 8vh 6vw; overflow: hidden; }
+    .copy { position: relative; z-index: 1; max-width: 46ch; text-align: center; }
+    h2 { font-weight: 400; letter-spacing: .06em; margin: 0 0 .6em; }
+    .kobyz-wrap { width: min(70vw, 300px); margin-inline: auto; }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="copy">
+      <div data-sacred="rub" style="--sv-size:min(70vw,360px)"></div>
+      <h2>Ibn Battuta</h2>
+      <p>Rub el Hizb — drawn first, then a soft glow and a very slow turn.</p>
+    </div>
+  </section>
+
+  <section>
+    <div data-sacred="shanyrak" data-sacred-bg></div>
+    <div class="copy">
+      <h2>Tengri routes</h2>
+      <p>The shanyrak turns slowly behind the text at low opacity, so reading is never disturbed.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="copy">
+      <div class="kobyz-wrap"><div data-sacred="kobyz"></div></div>
+      <h2>Kobyz</h2>
+      <p>Strings vibrate; soft rings of sound spread behind the instrument.</p>
+    </div>
+  </section>
+
+  <script src="sacred-svg.js"></script>
+</body>
+</html>

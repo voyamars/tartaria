@@ -1,0 +1,217 @@
+/* TARTARIA XP — art.css: engraved tour artwork (home preview + tour hero). transform / opacity / masks only. */
+
+/* ==========================================================================
+   ALL TUNABLE PARAMETERS (stage 1: home card + tour-page seam)
+   ========================================================================== */
+:root {
+  /* tour page: how the artwork dissolves into the page */
+  --txp-bg: #060608;                       /* section background (must equal --obsidian) */
+  --txp-art-blend: lighten;                /* lighten = max(page, art): any dark plate (≤ #060608) vanishes, gold stays. normal = off */
+  --txp-art-edge: 8%;                      /* linear fade on every side of the art box: guarantees alpha 0 at the box edge */
+  --txp-art-core: 52%;                     /* radius of the fully opaque centre of the soft ellipse */
+  --txp-art-rx: 68%;                       /* soft ellipse radii (relative to the art box) */
+  --txp-art-ry: 62%;
+  --txp-art-cy: 46%;                       /* soft ellipse centre, vertical */
+  --txp-art-mid: .5;                       /* opacity at the middle of the fade (smooths banding) */
+  --txp-art-mobile-fade: 14%;              /* tablet / phone: top and bottom fade of the art strip */
+
+  /* home card (.preview) */
+  --txp-card-bg: #060608;
+  --txp-card-glow-idle: rgba(212, 175, 55, .0);
+  --txp-card-glow: rgba(212, 175, 55, .20);          /* outer golden glow on hover */
+  --txp-card-glow-size: 90px;
+  --txp-card-frame: rgba(243, 229, 171, .20);        /* border, idle */
+  --txp-card-frame-hover: rgba(212, 175, 55, .75);   /* border, hover */
+  --txp-card-inner: rgba(212, 175, 55, .0);          /* inner hairline frame, idle */
+  --txp-card-inner-hover: rgba(212, 175, 55, .34);   /* inner hairline frame, hover */
+  --txp-card-zoom: 1.06;                            /* image zoom on hover */
+  --txp-card-zoom-time: 2.6s;                        /* slow zoom */
+  --txp-card-time: .9s;                              /* glow / frame transition */
+  --txp-card-art-fit: .78;                           /* how much of the image zone the artwork may fill (0–1) */
+  --txp-card-art-cy: .5;                            /* vertical centre of the artwork inside the image zone (0–1) */
+  --txp-card-zone-fade: 7%;                          /* soft bottom edge of the image zone */
+  --txp-card-rule: rgba(212, 175, 55, .38);          /* hairline between image zone and text zone */
+  --txp-card-halo: rgba(212, 175, 55, .075);         /* warm halo behind the artwork */
+  --txp-card-geo-opacity: .04;                       /* decorative geometry behind the artwork */
+  --txp-art-ratio: 1.2496;                           /* artwork height / width (1402 / 1122) */
+}
+.art { position: relative; width: 100%; aspect-ratio: 1122 / 1402; pointer-events: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+.art__poster, .art__live, .art__orb, .lay.full { position: absolute; inset: 0; }
+.art__poster { background-size: 100% 100%; background-repeat: no-repeat; }
+.art.is-live .art__poster { visibility: hidden; }
+.lay { position: absolute; will-change: transform;
+  transform: translate3d(calc(var(--mx, 0) * var(--PA, 0px) * var(--d, 0)), calc((var(--my, 0) * var(--PA, 0px) + var(--sy, 0px)) * var(--d, 0)), 0); }
+.lay__i { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; }
+.ovl { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.art:not(.is-live) .art__live > .lay { visibility: hidden; }
+
+/* home card — two clear zones (image above, text below), grid keeps them from ever overlapping.
+   The artwork is fitted into the image zone from its real content box (--fx/--fy/--cx/--cy, set by art.js). */
+.preview { background: var(--txp-card-bg); border-color: var(--txp-card-frame);
+  transition: border-color var(--txp-card-time) ease, box-shadow var(--txp-card-time) ease; }
+.preview::before { content: ""; position: absolute; inset: 8px; z-index: 5; pointer-events: none; border: 1px solid var(--txp-card-inner); border-radius: 3px;
+  transition: border-color var(--txp-card-time) ease; }
+.preview:hover, .preview:focus-within { border-color: var(--txp-card-frame-hover);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 40px 90px rgba(0, 0, 0, .55), 0 0 var(--txp-card-glow-size) var(--txp-card-glow); }
+.preview:hover::before, .preview:focus-within::before { border-color: var(--txp-card-inner-hover); }
+
+.preview__slide { display: grid; grid-template-rows: minmax(0, 1fr) auto; background: radial-gradient(70% 46% at 50% 30%, var(--txp-card-halo), transparent 72%), var(--txp-card-bg); }
+.preview__slide::after { display: none; }
+.preview__geo { opacity: var(--txp-card-geo-opacity); }
+
+.preview__art { position: relative; grid-row: 1; inset: auto; z-index: 1; min-height: 0; overflow: hidden; background: transparent; container-type: size;
+  --fit: var(--txp-card-art-fit); --k: var(--txp-art-ratio); --fx: .92; --fy: .88; --cx: .5; --cy: .5;
+  --A: min(calc(var(--fit) * 100cqw / var(--fx)), calc(var(--fit) * 100cqh / (var(--fy) * var(--k))));
+  -webkit-mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - var(--txp-card-zone-fade)), transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0, #000 calc(100% - var(--txp-card-zone-fade)), transparent 100%); }
+.preview__art .art--home { position: absolute; width: var(--A);
+  left: calc(50cqw - var(--cx) * var(--A)); top: calc(var(--txp-card-art-cy) * 100cqh - var(--cy) * var(--A) * var(--k));
+  transform-origin: 50% 50%; transition: transform var(--txp-card-zoom-time) var(--ease); will-change: transform; }
+.preview:hover .preview__slide.is-active .art--home, .preview:focus-within .preview__slide.is-active .art--home { transform: scale(var(--txp-card-zoom)); }
+
+.preview__text { position: relative; grid-row: 2; z-index: 2; padding-top: clamp(22px, 2.6vw, 34px); background: linear-gradient(180deg, rgba(6, 6, 8, 0), var(--txp-card-bg) 26px); }
+.preview__text::before { content: ""; position: absolute; left: clamp(24px, 3.4vw, 44px); right: clamp(24px, 3.4vw, 44px); top: 0; height: 1px;
+  background: linear-gradient(90deg, var(--txp-card-rule), rgba(212, 175, 55, .08) 70%, transparent); }
+@media (prefers-reduced-motion: reduce) { .preview, .preview::before, .preview__art .art--home { transition-duration: .01ms; } .preview:hover .preview__slide.is-active .art--home { transform: none; } }
+
+/* reveal: soft wipe, top to bottom */
+.art.is-wipe { -webkit-mask-image: linear-gradient(180deg, #000 0, #000 38%, transparent 62%, transparent 100%); mask-image: linear-gradient(180deg, #000 0, #000 38%, transparent 62%, transparent 100%);
+  -webkit-mask-size: 100% 300%; mask-size: 100% 300%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; animation: artWipe 2.8s cubic-bezier(.42, .08, .3, 1) both; }
+@keyframes artWipe { from { -webkit-mask-position: 0 100%; mask-position: 0 100%; } to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+
+/* everything idles until the art is in view / active */
+.art:not(.is-play) *, .art:not(.is-play) { animation-play-state: paused !important; }
+
+/* draw-on strokes */
+.draw { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.art.is-run .draw { animation: artDraw var(--t, 3.6s) cubic-bezier(.4, 0, .15, 1) var(--dl, 0s) both; }
+@keyframes artDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.arc { stroke-width: 2.2; }
+path.route.draw { stroke: #FF3B4A; stroke-width: 3.2; stroke-opacity: 1; filter: drop-shadow(0 0 3px rgba(255, 59, 74, .9)) drop-shadow(0 0 1px rgba(0, 0, 0, .8)); }
+.route__end { fill: #FF3B4A; filter: drop-shadow(0 0 4px rgba(255, 59, 74, .9)); opacity: 0; }
+.art.is-run .route__end { animation: artFade 1.2s ease 5.8s forwards; }
+@keyframes artFade { to { opacity: 1; } }
+
+/* tour 1 */
+.a-hair { animation: hairSway 7.5s ease-in-out infinite alternate; will-change: transform; }
+@keyframes hairSway { from { transform: skewX(-1.6deg) rotate(.3deg); } to { transform: skewX(1.6deg) rotate(-.3deg); } }
+.a-hairwave { animation: hairWave 7.5s ease-in-out infinite alternate; will-change: transform; }
+@keyframes hairWave { from { transform: skewX(calc(var(--ha, 2.2deg) * -1)) rotate(.3deg); } to { transform: skewX(var(--ha, 2.2deg)) rotate(-.3deg); } }
+.arc__spark { fill: #FFF1BE; filter: drop-shadow(0 0 5px rgba(243, 229, 171, .9)); }
+.a-grass { animation: grassSway 4.8s ease-in-out infinite alternate; will-change: transform; }
+@keyframes grassSway { from { transform: skewX(-3deg); } to { transform: skewX(3deg); } }
+
+/* tour 2 */
+.glint { overflow: hidden; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.glint i { position: absolute; top: -10%; bottom: -10%; left: 0; width: 46%; will-change: transform; transform: translate3d(-120%, 0, 0);
+  background: linear-gradient(105deg, transparent 0, rgba(243, 229, 171, .0) 30%, rgba(255, 244, 205, .8) 50%, rgba(243, 229, 171, 0) 70%, transparent 100%); animation: glintMove 8.5s cubic-bezier(.45, 0, .25, 1) infinite 1s; }
+@keyframes glintMove { 0% { transform: translate3d(-120%, 0, 0); } 42%, 100% { transform: translate3d(330%, 0, 0); } }
+.tw { position: absolute; inset: 0; background-size: 100% 100%; background-repeat: no-repeat; filter: brightness(2.2) saturate(.85); opacity: 0; animation: twinkle 4.4s ease-in-out infinite; }
+@keyframes twinkle { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+/* tour 3 */
+.str__p { fill: none; stroke: #FFF1BE; stroke-width: 2.8; stroke-linecap: round; opacity: .2; animation: strPluck 3.2s ease-out infinite; }
+@keyframes strPluck { 0% { opacity: .25; } 6% { opacity: 1; } 70%, 100% { opacity: .3; } }
+.ring { position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; border: 1px solid rgba(243, 229, 171, .42); transform: translate(-50%, -50%) scale(.2); opacity: 0; animation: ringOut 7.5s cubic-bezier(.2, .6, .3, 1) infinite; will-change: transform, opacity; }
+@keyframes ringOut { 0% { transform: translate(-50%, -50%) scale(.2); opacity: 0; } 10% { opacity: .5; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+.spin { animation: artSpin 160s linear infinite; }
+.spin.rev { animation-direction: reverse; }
+@keyframes artSpin { to { transform: rotate(360deg); } }
+.orb__ring.tg { stroke-opacity: .3; }
+
+/* tour 5 */
+.a-swing1 { animation: swing1 6.4s ease-in-out infinite alternate; will-change: transform; }
+.a-swing2 { animation: swing2 5.6s ease-in-out -1.8s infinite alternate; will-change: transform; }
+@keyframes swing1 { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+@keyframes swing2 { from { transform: rotate(2.1deg); } to { transform: rotate(-2.1deg); } }
+
+/* tour 7 */
+.eye { fill: #F3E5AB; opacity: 0; transform-box: fill-box; transform-origin: center; animation: eyeFlash 7s ease-in-out infinite; }
+.eye__ring { fill: none; stroke: #F3E5AB; stroke-width: 1.4; opacity: 0; transform-box: fill-box; transform-origin: center; animation: eyeRing 7s ease-out infinite; }
+@keyframes eyeFlash { 0%, 84% { opacity: 0; transform: scale(.7); } 90% { opacity: .95; transform: scale(1); } 100% { opacity: 0; transform: scale(1.1); } }
+@keyframes eyeRing { 0%, 86% { opacity: 0; transform: scale(1); } 90% { opacity: .55; } 100% { opacity: 0; transform: scale(3.2); } }
+.dust { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #F3E5AB; opacity: 0; will-change: transform, opacity; animation: dustMove 20s linear infinite; }
+@keyframes dustMove { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 15% { opacity: .5; } 85% { opacity: .35; } 100% { transform: translate3d(var(--dx), var(--dy), 0); opacity: 0; } }
+
+/* tour 8 */
+.a-wingL { animation: wingL 6.2s ease-in-out infinite alternate; will-change: transform; }
+.a-wingR { animation: wingR 6.2s ease-in-out infinite alternate; will-change: transform; }
+.a-rays { animation: raysTurn 22s ease-in-out infinite alternate; will-change: transform; }
+@keyframes wingL { from { transform: rotate(2.8deg); } to { transform: rotate(-2.8deg); } }
+@keyframes wingR { from { transform: rotate(-2.8deg); } to { transform: rotate(2.8deg); } }
+@keyframes raysTurn { from { transform: rotate(-2.4deg); } to { transform: rotate(2.4deg); } }
+
+/* orbits + stops (tour page only): hairlines, no labels */
+.orb__ring { fill: none; stroke: #F3E5AB; stroke-opacity: .2; stroke-width: 1.4; }
+.orb { animation: orbBreathe 14s ease-in-out infinite alternate; will-change: transform; }
+@keyframes orbBreathe { from { transform: scale(1); } to { transform: scale(1.022); } }
+.orb__dot { fill: #F3E5AB; opacity: .35; animation: dotTwinkle 3.8s ease-in-out infinite; }
+.orb__dot.still { animation: none; opacity: .6; }
+@keyframes dotTwinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+
+/* tour 6 lattice */
+.lat { fill: none; stroke: #D4AF37; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.lat--star { stroke: #F3E5AB; stroke-opacity: .88; }
+.lat--faint { stroke-width: 1.5; stroke-opacity: .7; }
+.rete { animation: artSpin 150s linear infinite; }
+
+/* tour page */
+.rt-art .art--tour { position: relative; }
+.rt-art .art__orb { pointer-events: none; }
+.art--tour .art__live { animation: artBreathe 18s ease-in-out infinite alternate; transform-origin: 50% 38%; }
+@keyframes artBreathe { from { transform: scale(1); } to { transform: scale(1.012); } }
+/* ---- SEAM FIX -------------------------------------------------------------------------------------
+   Cause (measured): the art box carried an opaque #060608 fill (baked into the cut layers) under a mask whose
+   100% stop lay OUTSIDE the box, so at the box edge the mask was still ~40–50 % opaque. The flat dark plate hid
+   the page's warm glow and ended in a straight line.
+   1) lighten blend: every art pixel darker than the page behind it is replaced by the page, so no plate can show;
+   2) mask = soft ellipse ∩ four linear edge fades: alpha is exactly 0 at every side of the box;
+   3) #rt must not be its own stacking context, otherwise the blend can not see the page glow behind it.        */
+.rt-page #rt { z-index: auto; }
+.rt-page .rt-art { background: transparent; mix-blend-mode: var(--txp-art-blend);
+  --_soft: radial-gradient(ellipse var(--txp-art-rx) var(--txp-art-ry) at 50% var(--txp-art-cy), #000 var(--txp-art-core), rgba(0, 0, 0, var(--txp-art-mid)) calc((var(--txp-art-core) + 100%) / 2), transparent 100%);
+  --_ex: linear-gradient(90deg, transparent 0, #000 var(--txp-art-edge), #000 calc(100% - var(--txp-art-edge)), transparent 100%);
+  --_ey: linear-gradient(180deg, transparent 0, #000 var(--txp-art-edge), #000 calc(100% - var(--txp-art-edge)), transparent 100%);
+  -webkit-mask-image: var(--_soft), var(--_ex), var(--_ey); mask-image: var(--_soft), var(--_ex), var(--_ey);
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-composite: source-in, source-in; mask-composite: intersect, intersect; }
+.rt-page .rt-art .art, .rt-page .rt-art .art__poster { background-color: transparent; }
+@media (min-width: 821px) {
+  .rt-page .rt-hero { grid-template-columns: minmax(0, 1.06fr) minmax(0, .94fr); }
+  .rt-page .rt-art { width: 112%; margin: -3% 0 -3% -6%; }
+}
+@media (max-width: 820px) {
+  .rt-page .rt-hero { position: relative; isolation: auto; padding-top: min(40svh, 340px); }   /* no own stacking context: the blend must reach the page glow */
+  .rt-page .rt-hero__copy { position: relative; z-index: 1; }
+  .rt-page .rt-art { position: absolute; left: 0; right: 0; top: 0; height: min(54svh, 470px); z-index: 0; overflow: hidden;
+    --_soft: linear-gradient(180deg, transparent 0, #000 var(--txp-art-mobile-fade), #000 40%, transparent 86%);
+    --_ex: linear-gradient(90deg, #000, #000); --_ey: linear-gradient(180deg, #000, #000); }
+  .rt-page .rt-art .art--tour { position: absolute; left: 50%; top: 0; width: min(132%, 600px); transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not(.txp-motion) .art * { animation: none !important; }
+  :root:not(.txp-motion) .draw { stroke-dashoffset: 0; }
+  :root:not(.txp-motion) .route__end, :root:not(.txp-motion) .art__orb { opacity: 1; }
+}
+
+/* tour page: orbits and stops arrive after the picture */
+.art__orb { opacity: 0; }
+.art.is-run .art__orb, .art.is-fade .art__orb { animation: orbIn 2.4s ease 1.8s forwards; }
+@keyframes orbIn { to { opacity: 1; } }
+/* reduced motion: no movement, only a slow fade-in (override with ?motion=on) */
+.art.is-fade { animation: artFadeIn 2.4s cubic-bezier(.33, 0, .2, 1) both; }
+@keyframes artFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+
+/* home card: the Great Exodus artwork sits a little to the right so it never runs under the "Tour preview" tag */
+.preview__art .art--home[data-n="4"] { left: calc(50cqw - var(--cx) * var(--A) + 7cqw); }
+/* no seams / cut-offs while layers move: every moving layer gets its own composited plane, soft edges, overflow never clipped */
+.lay, .lay__i { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.art, .art__live, .lay { overflow: visible; }
+.lay.dusts { overflow: clip; }                                /* drifting dust must never widen the page (tour 7 produced a 6 px horizontal scroll) */
+.preview__geo { display: none !important; }
+
+/* tour 3: golden vector shanyrak (sacred-svg.js: draws itself, glows, turns slowly) behind the opaque kobyz */
+.art__shan { --sacred-shan-opacity: .9; --sacred-shan-spin: 80s; --sacred-stroke: 2.1; pointer-events: none; }
+.art__shan .sv-art { --sv-size: 100%; margin: 0; color: #D4AF37; }
